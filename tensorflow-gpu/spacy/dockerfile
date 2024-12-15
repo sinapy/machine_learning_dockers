@@ -1,0 +1,9 @@
+FROM tensorflow/tensorflow:latest-gpu
+
+RUN pip install -U pip setuptools wheel && \
+    pip install -U 'spacy[cuda12x]' && \
+    python -m spacy download en_core_web_sm
+
+COPY test.py .
+
+RUN python test.py
